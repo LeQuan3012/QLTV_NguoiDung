@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/nav_Home"
+            android:icon="@drawable/baseline_home_24"
+            android:title="Home"
+            />
+        <item android:title="Thông tin quy định"
+            android:id="@+id/nav_quydinh"
+            android:icon="@drawable/ic_insert_emoticon_24">
+        </item>
+    </group>
+    <item android:title="Cá nhân">
+        <menu>
+            <item android:title="Thông tin cá nhân"
+                android:id="@+id/nav_thongtincanhan"
+                android:icon="@drawable/ic_account_circle_24">
+            </item>
+
+            <item android:title="Thay đổi mật khẩu"
+                android:id="@+id/nav_change_password"
+                android:icon="@drawable/ic_lock_24">
+            </item>
+            <item android:title="Thông tin ứng dụng"
+                android:id="@+id/nav_ttungdung"
+                android:icon="@drawable/ic_info_24">
+            </item>
+        </menu>
+    </item>
+
+</menu>

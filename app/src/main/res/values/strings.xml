@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Z-Library</string>
+    <string name="nav_home">Kệ sách</string>
+    <string name="nav_sach">Sách</string>
+    <string name="nav_muonsach">Mượn sách</string>
+    <string name="nav_quydinh">Thông tin quy định</string>
+    <string name="nav_change_passwoed">Thay đổi mật khẩu</string>
+    <string name="nav_thaydoittcanhan">Thông tin cá nhân</string>
+    <string name="nav_ttud">Thông tin ứng dụng</string>
+    <string name="nav_close">Close</string>
+    <string name="nav_open">Open</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

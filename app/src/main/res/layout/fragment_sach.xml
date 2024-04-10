@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/txttheloai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sách Công ngheej thông tin"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/txtsoluongsach"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+        </TableRow>
+    </TableLayout>
+    <EditText
+        android:id="@+id/edttimkiem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/quan_txt_timkiem_sach"
+        android:drawableLeft="@drawable/quan_ic_search_24"
+        android:hint="  Nhập thông tin sách cần tìm"
+        android:inputType="text"
+        android:textSize="15sp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:padding="5dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/recycleviewsach"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
