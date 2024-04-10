@@ -44,7 +44,7 @@ public class DAOMuonSach {
     }
     public List<MyMuonSach> getAllSachMuon(int maquanly){
         List<MyMuonSach> list = new ArrayList<>();
-        String sql = "select * from MuonSach where MaQuanLy=?";
+        String sql = "select * from MuonSach where MaSinhVien=?";
         Cursor c = database.rawQuery(sql, new String[]{String.valueOf(maquanly)});
         if(c == null){
             return list = null;
@@ -64,7 +64,7 @@ public class DAOMuonSach {
     }
     public int getsosachdamuon(int maquanly){
         int kq = 0;
-        String sql = "select sum(SoLuong) from MuonSach where MaQuanLy=? and TinhTrang=? group by MaQuanLy";
+        String sql = "select sum(SoLuong) from MuonSach where MaSinhVien=? and TinhTrang=? group by MaSinhVien";
         Cursor c = database.rawQuery(sql, new String[]{maquanly+"","Đã trả"});
         if(c!= null && c.moveToFirst()){
             kq = c.getInt(0);
@@ -73,7 +73,7 @@ public class DAOMuonSach {
     }
     public int getsosachdangmuon(int maquanly){
         int kq = 0;
-        String sql = "select sum(SoLuong) from MuonSach where MaQuanLy=? and TinhTrang=? group by MaQuanLy";
+        String sql = "select sum(SoLuong) from MuonSach where MaSinhVien=? and TinhTrang=? group by MaSinhVien";
         Cursor c = database.rawQuery(sql, new String[]{maquanly+"","Chưa trả"});
         if(c!= null && c.moveToFirst()){
             kq = c.getInt(0);
@@ -83,7 +83,7 @@ public class DAOMuonSach {
 
     public int getSLMuonTheoSach(int mamuon, int masach, int maquanly){
         int sl = 0;
-        String sql ="select SoLuong from MuonSach where MaMuonSach=? and MaSach=? and MaQuanLy=?";
+        String sql ="select SoLuong from MuonSach where MaMuonSach=? and MaSach=? and MaSinhVien=?";
         Cursor c = database.rawQuery(sql, new String[]{mamuon+"",masach+"",maquanly+""});
         if(c!=null && c.moveToFirst()){
             sl = c.getInt(0);
@@ -92,7 +92,7 @@ public class DAOMuonSach {
     }
     public String getNgayTraMuonSachTheoSach(int masach, int maquanly){
         String t = "";
-        String sql ="select NgayTra from MuonSach where MaSach=? and MaQuanLy=? and TinhTrang=?";
+        String sql ="select NgayTra from MuonSach where MaSach=? and MaSinhVien=? and TinhTrang=?";
         Cursor c = database.rawQuery(sql, new String[]{masach+"",maquanly+"","Đã trả"});
         if(c!=null && c.moveToFirst()){
             t = c.getString(0);
@@ -130,7 +130,7 @@ public class DAOMuonSach {
             values.put("SoLuong",getSLmuontheosachDeTra(maquanly,tensach, ngaymuon)-soluong);
             database.update("MuonSach",values,"MaMuonSach=?", new String[]{mamuonsach});
             ContentValues valuesthem = new ContentValues();
-            valuesthem.put("MaQuanLy",maquanly);
+            valuesthem.put("MaSinhVien",maquanly);
             valuesthem.put("MaSach",daoSach.getMaSach(tensach));
             valuesthem.put("NgayMuon",ngaymuon);
             valuesthem.put("NgayTra",ngaytra);
@@ -144,7 +144,7 @@ public class DAOMuonSach {
     public int getSLmuontheosachDeTra(String maquanly, String tensach, String ngaymuon){
         int sl=0;
         String masach = getmasach(tensach);
-        String sql = "select SoLuong from MuonSach where MaQuanLy=? and MaSach=? and NgayMuon=? and TinhTrang=?";
+        String sql = "select SoLuong from MuonSach where MaSinhVien=? and MaSach=? and NgayMuon=? and TinhTrang=?";
         Cursor c = database.rawQuery(sql, new String[]{maquanly,masach,ngaymuon,"Chưa trả"});
         if (c != null && c.moveToFirst()) {
             sl = c.getInt(0);
@@ -165,7 +165,7 @@ public class DAOMuonSach {
 
     public int getsosachquahan(int maquanly){
         int kq = 0;
-        String sql = "SELECT SUM(SoLuong) FROM MuonSach WHERE MaQuanLy=? AND (ROUND(julianday('now') - julianday(NgayMuon)) > 60) AND TinhTrang='Chưa trả' GROUP BY MaQuanLy";
+        String sql = "SELECT SUM(SoLuong) FROM MuonSach WHERE MaSinhVien=? AND (ROUND(julianday('now') - julianday(NgayMuon)) > 60) AND TinhTrang='Chưa trả' GROUP BY MaSinhVien";
         Cursor c = database.rawQuery(sql, new String[]{maquanly+""});
         if(c!= null && c.moveToFirst()){
             kq = c.getInt(0);
@@ -175,7 +175,7 @@ public class DAOMuonSach {
     public String getMaMuonSach(String maquanly, String tensach, String ngaymuon){
         String ma="";
         String masach = getmasach(tensach);
-        String sql = "select MaMuonSach from MuonSach where MaQuanLy=? and MaSach=? and NgayMuon=? and TinhTrang=?";
+        String sql = "select MaMuonSach from MuonSach where MaSinhVien=? and MaSach=? and NgayMuon=? and TinhTrang=?";
         Cursor c = database.rawQuery(sql, new String[]{maquanly,masach,ngaymuon,"Chưa trả"});
         if (c != null && c.moveToFirst()) {
 
@@ -197,16 +197,16 @@ public class DAOMuonSach {
     }
     public long insert_muonsach( MyMuonSach obj){
         int sl=0;
-        String sql = "select SoLuong from MuonSach where MaQuanLy=? and MaSach=? and NgayMuon=? and TinhTrang=?";
+        String sql = "select SoLuong from MuonSach where MaSinhVien=? and MaSach=? and NgayMuon=? and TinhTrang=?";
         ContentValues values = new ContentValues();
         Cursor c = database.rawQuery(sql, new String[]{String.valueOf(obj.getMaquanly()),String.valueOf(obj.getMasach()), obj.getNgaymuon(), "Chưa trả"});
         if(c!=null && c.moveToFirst()){
             sl=c.getInt(0);
             values.put("SoLuong",obj.getSoluong()+sl);
-            return database.update("MuonSach",values,"MaQuanLy=? AND MaSach=? AND NgayMuon=? AND TinhTrang=?",new String[]{String.valueOf(obj.getMaquanly()), String.valueOf(obj.getMasach()), obj.getNgaymuon(), "Chưa trả"});
+            return database.update("MuonSach",values,"MaSinhVien=? AND MaSach=? AND NgayMuon=? AND TinhTrang=?",new String[]{String.valueOf(obj.getMaquanly()), String.valueOf(obj.getMasach()), obj.getNgaymuon(), "Chưa trả"});
         }
         else{
-            values.put("MaQuanLy", obj.getMaquanly());
+            values.put("MaSinhVien", obj.getMaquanly());
             values.put("MaSach", obj.getMasach());
             values.put("NgayMuon",obj.getNgaymuon());
             values.put("NgayTra","");

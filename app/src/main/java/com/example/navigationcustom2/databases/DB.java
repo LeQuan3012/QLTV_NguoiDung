@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class DB extends SQLiteOpenHelper {
 
-    private static final String DB_NAME = "library_managernew.db";
+    private static final String DB_NAME = "library_manager.db";
     private static final int DB_VERSION = 1;
 
 //    private final String CREATE_TABLE_MuonSach = "CREATE TABLE IF NOT EXISTS \"MuonSach\" (\n" +
